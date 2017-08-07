@@ -20,7 +20,7 @@ bot.on("message", function(message) {
 
     var args = message.content.substring(PREFIX.length).split(" ");
 
-    switch (args[0]) {
+    switch (args[0].toLowerCase()) {
     	case "ping":
     		message.channel.sendMessage("Pong!");
     		break;
