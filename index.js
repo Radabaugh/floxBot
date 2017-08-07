@@ -25,7 +25,7 @@ bot.on("message", function(message) {
     		message.channel.sendMessage("Pong!");
     		break;
     	case "hello":
-    		message.channel.sendMessage("Hi, I'm Flox Bot. How can I help?");
+    		message.channel.sendMessage("Hi " + message.author.toString() +", I'm Flox Bot. How can I help?");
     		message.channel.sendMessage("Typing '!help' will display a list of commands.");
     		break;
     	case "help":
