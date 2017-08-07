@@ -9,6 +9,8 @@
   "author": "Floxacin",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.1.0"
+    "discord.js": "^11.1.0",
+    "opusscript": "0.0.3",
+    "ytdl-core": "^0.15.0"
   }
 }

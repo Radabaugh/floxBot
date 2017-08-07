@@ -13,6 +13,10 @@ bot.on("ready", function() {
     console.log("Ready");
 });
 
+bot.on("guildMemberAdd", function(member) {
+	member.guild.channels.find("name", "general").sendMessage("Welcome " + member.toString() + "!");
+});
+
 bot.on("message", function(message) {
     if (message.author.equals(bot.user)) return;
 
@@ -20,6 +24,7 @@ bot.on("message", function(message) {
 
     var args = message.content.substring(PREFIX.length).split(" ");
 
+    // commands
     switch (args[0].toLowerCase()) {
     	case "ping":
     		message.channel.sendMessage("Pong!");
