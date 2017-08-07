@@ -1,0 +1,2 @@
+# floxBot
+A discord bot
