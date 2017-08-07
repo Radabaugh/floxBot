@@ -24,6 +24,10 @@ bot.on("message", function(message) {
     	case "ping":
     		message.channel.sendMessage("Pong!");
     		break;
+    	case "hello":
+    		message.channel.sendMessage("Hi, I'm Flox Bot. How can I help?");
+    		message.channel.sendMessage("Typing '!help' will display a list of commands.");
+    		break;
     }
 });
 
