@@ -29,7 +29,12 @@ bot.on("message", function(message) {
     		message.channel.sendMessage("Typing '!help' will display a list of commands.");
     		break;
     	case "help":
-    		message.channel.sendMessage("All commands must be prefixed with an '!' and are case insensitive.");
+    		var embed = new Discord.RichEmbed()
+    			.addField("All commands must be prefixed with an '!' and are case insensitive.", "(╯°□°)╯︵ ┻━┻")
+    			.addField("hello", "Say Hello to Flox Bot.")
+    			.addField("help", "Get a list of all commands.")
+    			.addField("ping", "Play ping-pong with Flox Bot! Or just see if he's online.")
+    		message.channel.sendEmbed(embed);
     		break;
     	default:
     		message.channel.sendMessage("Invalid command.");
