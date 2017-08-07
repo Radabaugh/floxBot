@@ -34,6 +34,7 @@ bot.on("message", function(message) {
     			.addField("hello", "Say Hello to Flox Bot.")
     			.addField("help", "Get a list of all commands.")
     			.addField("ping", "Play ping-pong with Flox Bot! Or just see if he's online.")
+    			.setColor(0xff6500);
     		message.channel.sendEmbed(embed);
     		break;
     	default:
