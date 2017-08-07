@@ -31,6 +31,8 @@ bot.on("message", function(message) {
     	case "help":
     		message.channel.sendMessage("All commands must be prefixed with an '!' and are case insensitive.");
     		break;
+    	default:
+    		message.channel.sendMessage("Invalid command.");
     }
 });
 
