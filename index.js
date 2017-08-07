@@ -15,7 +15,7 @@ bot.on("ready", function() {
 
 // Welcome newcomers
 bot.on("guildMemberAdd", function(member) {
-	member.guild.channels.find("name", "general").sendMessage("Welcome " + member.toString() + "!");
+	member.guild.channels.find("name", "guild").sendMessage("Hi " + member.toString() + " welcome to Boomstick!");
 });
 
 // Commands
