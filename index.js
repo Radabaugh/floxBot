@@ -77,7 +77,12 @@ bot.on("message", function(message) {
 
     		var server = servers[message.guild.id];
 
-    		server.queue.push(args[1]);
+    		if (args[1].search(/youtube/i) == 12) {
+    			server.queue.push(args[1]);
+    		} else {
+    			message.channel.sendMessage("Link must be from youtube.");
+    			return;
+    		}
 
     		if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
     			play(connection, message);
