@@ -1,2 +1,2 @@
 # floxBot
-A discord bot
+A discord bot in node JS!
