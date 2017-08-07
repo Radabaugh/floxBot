@@ -28,6 +28,9 @@ bot.on("message", function(message) {
     		message.channel.sendMessage("Hi, I'm Flox Bot. How can I help?");
     		message.channel.sendMessage("Typing '!help' will display a list of commands.");
     		break;
+    	case "help":
+    		message.channel.sendMessage("All commands must be prefixed with an '!' and are case insensitive.");
+    		break;
     }
 });
 
