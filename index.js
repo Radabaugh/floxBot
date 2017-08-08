@@ -19,7 +19,7 @@ function play(connection, message) {
 
 // Create an instance of a Discord client
 const bot = new Discord.Client();
-const TOKEN = 'MzQzOTM1NjM2MTAyODQwMzIw.DGllPQ.-y7TRmdyoxbHeFO21NbfiN6pLxk';
+const TOKEN = 'MzQzOTM1NjM2MTAyODQwMzIw.DGrTSQ.N3MX3Q8Tk1sqR0uCwPYAk7sJL0s';
 const PREFIX = "!";
 
 // Servers for multiple discord music queues
