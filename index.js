@@ -4,6 +4,15 @@
 const Discord = require('discord.js');
 const YTDL = require("ytdl-core");
 
+// Create an instance of a Discord client
+const bot = new Discord.Client();
+const TOKEN = 'MzQzOTM1NjM2MTAyODQwMzIw.DGrTSQ.N3MX3Q8Tk1sqR0uCwPYAk7sJL0s';
+const PREFIX = "!";
+
+// Servers for multiple discord music queues
+var servers = {};
+
+// plays audio from youtube links in the queue
 function play(connection, message) {
 	var server = servers[message.guild.id];
 
@@ -16,14 +25,6 @@ function play(connection, message) {
 		else connection.disconnect();
 	});
 }
-
-// Create an instance of a Discord client
-const bot = new Discord.Client();
-const TOKEN = 'MzQzOTM1NjM2MTAyODQwMzIw.DGrTSQ.N3MX3Q8Tk1sqR0uCwPYAk7sJL0s';
-const PREFIX = "!";
-
-// Servers for multiple discord music queues
-var servers = {};
 
 // The ready event 
 bot.on("ready", function() {
