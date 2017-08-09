@@ -3,10 +3,10 @@
 // Import the discord.js module
 const Discord = require('discord.js');
 const YTDL = require("ytdl-core");
+const config = require("./config.json");
 
 // Create an instance of a Discord client
 const bot = new Discord.Client();
-const TOKEN = 'MzQzOTM1NjM2MTAyODQwMzIw.DGrTSQ.N3MX3Q8Tk1sqR0uCwPYAk7sJL0s';
 const PREFIX = "!";
 
 // Servers for multiple discord music queues
@@ -115,4 +115,4 @@ bot.on("message", function(message) {
 });
 
 // Log our bot in
-bot.login(TOKEN);
+bot.login(config.TOKEN);
