@@ -45,6 +45,9 @@ bot.on("message", function(message) {
     var args = message.content.substring(PREFIX.length).split(" ");
 
     switch (args[0].toLowerCase()) {
+    	case "id":
+    		message.channel.sendMessage(message.channel.id);
+    		break;
     	case "ping":
     		message.channel.sendMessage("Pong!");
     		break;
@@ -90,7 +93,7 @@ bot.on("message", function(message) {
 
     		if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
     			play(connection, message);
-    		}).catch(function () {
+    		}).catch(function() {
     			message.channel.sendMessage("Connection timed out. Please try again.");
     			return;
     		});
