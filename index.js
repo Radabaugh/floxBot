@@ -90,6 +90,9 @@ bot.on("message", function(message) {
 
     		if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
     			play(connection, message);
+    		}).catch(function () {
+    			message.channel.sendMessage("Connection timed out. Please try again.");
+    			return;
     		});
     		break;
     	case "skip":
