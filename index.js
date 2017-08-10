@@ -45,6 +45,25 @@ bot.on("message", function(message) {
 	var args = message.content.substring(PREFIX.length).split(" ");
 
 	switch (args[0].toLowerCase()) {
+		case "ban":
+			var modRole = message.guild.roles.find("name", "Overlord");
+			if (!message.member.roles.has(modRole.id)) {
+				return message.reply("You don't have the permission to use this command.");
+			}
+			if (message.mentions.users.size == 0) {
+				return message.reply("Please mention a user to ban.");
+			}
+			let banMember = message.guild.member(message.mentions.users.first());
+			if (!banMember) {
+				return message.reply("That user does not seem valid.");
+			}
+			if (!message.guild.member(bot.user).hasPermission("BAN_MEMBERS")) {
+				return message.reply("I don't have the permission to BAN_MEMBERS.");
+			}
+			banMember.ban().then(member => {
+				message.reply(member.toString() + ' was successfully banned.');
+			}).catch(console.error);
+			break;
 		case "hello":
 			message.channel.sendMessage("Hi " + message.author.toString() +", I'm Flox Bot. How can I help?");
 			message.channel.sendMessage("Typing '!help' will display a list of commands.");
@@ -52,6 +71,7 @@ bot.on("message", function(message) {
 		case "help":
 			var embed = new Discord.RichEmbed()
 				.addField("All commands must be prefixed with an '!' and are not case sensitive.", "(╯°□°)╯︵ ┻━┻")
+				.addField("ban", "Flox Bot will ban the first person mentioned after the command.")
 				.addField("hello", "Say Hello to Flox Bot.")
 				.addField("help", "Get a list of all commands.")
 				.addField("kick", "Flox Bot will kick the first person mentioned after the command.")
@@ -63,7 +83,7 @@ bot.on("message", function(message) {
 			message.channel.sendEmbed(embed);
 			break;
 		case "kick":
-			let modRole = message.guild.roles.find("name", "Overlord");
+			var modRole = message.guild.roles.find("name", "Overlord");
 			if (!message.member.roles.has(modRole.id)) {
 				return message.reply("You don't have the permission to use this command.");
 			}
