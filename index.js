@@ -54,12 +54,32 @@ bot.on("message", function(message) {
 				.addField("All commands must be prefixed with an '!' and are not case sensitive.", "(╯°□°)╯︵ ┻━┻")
 				.addField("hello", "Say Hello to Flox Bot.")
 				.addField("help", "Get a list of all commands.")
+				.addField("kick", "Flox Bot will kick the first person mentioned after the command.")
 				.addField("ping", "Play ping-pong with Flox Bot! Or just see if he's online.")
 				.addField("play", "Give Flox Bot a youtube link and he will play the audio in the voice channel you are in.")
 				.addField("skip", "If Flox Bot is currently playing a song, skip it and play the next one.")
 				.addField("stop", "Have Flox Bot stop playing songs.")
 				.setColor(0xff6500);
 			message.channel.sendEmbed(embed);
+			break;
+		case "kick":
+			let modRole = message.guild.roles.find("name", "Overlord");
+			if (!message.member.roles.has(modRole.id)) {
+				return message.reply("You don't have the permission to use this command.");
+			}
+			if (message.mentions.users.size == 0) {
+				return message.reply("Please mention a user to kick.");
+			}
+			let kickMember = message.guild.member(message.mentions.users.first());
+			if (!kickMember) {
+				return message.reply("That user does not seem valid.");
+			}
+			if (!message.guild.member(bot.user).hasPermission("KICK_MEMBERS")) {
+				return message.reply("I don't have the permission to KICK_MEMBERS.");
+			}
+			kickMember.kick().then(member => {
+				message.reply(member.toString() + ' was successfully kicked.');
+			}).catch(console.error);
 			break;
 		case "ping":
 			message.channel.sendMessage("Pong!");
