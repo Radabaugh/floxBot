@@ -21,8 +21,11 @@ function play(connection, message) {
 	server.queue.shift();
 
 	server.dispatcher.on("end", function() {
-		if (server.queue[0]) play(connection, message);
-		else connection.disconnect();
+		if (server.queue[0]) {
+			play(connection, message);
+		} else { 
+			connection.disconnect();
+		}
 	});
 }
 
@@ -33,7 +36,7 @@ bot.on("ready", function() {
 
 // Welcome newcomers
 bot.on("guildMemberAdd", function(member) {
-	member.guild.channels.find("name", "guild").sendMessage("Hi " + member.toString() + " welcome to Boomstick!");
+	member.guild.channels.find("name", "guild").send("Hi " + member.toString() + " welcome to Boomstick!");
 });
 
 // Commands
@@ -65,8 +68,8 @@ bot.on("message", function(message) {
 			}).catch(console.error);
 			break;
 		case "hello":
-			message.channel.sendMessage("Hi " + message.author.toString() +", I'm Flox Bot. How can I help?");
-			message.channel.sendMessage("Typing '!help' will display a list of commands.");
+			message.channel.send("Hi " + message.author.toString() +", I'm Flox Bot. How can I help?");
+			message.channel.send("Typing '!help' will display a list of commands.");
 			break;
 		case "help":
 			var embed = new Discord.RichEmbed()
@@ -80,7 +83,7 @@ bot.on("message", function(message) {
 				.addField("skip", "If Flox Bot is currently playing a song, skip it and play the next one.")
 				.addField("stop", "Have Flox Bot stop playing songs.")
 				.setColor(0xff6500);
-			message.channel.sendEmbed(embed);
+			message.channel.send(embed);
 			break;
 		case "kick":
 			var modRole = message.guild.roles.find("name", "Overlord");
@@ -102,16 +105,16 @@ bot.on("message", function(message) {
 			}).catch(console.error);
 			break;
 		case "ping":
-			message.channel.sendMessage("Pong!");
+			message.channel.send("Pong!");
 			break;
 		case "play":
 			if (!args[1]) {
-				message.channel.sendMessage("Please provide a link.");
+				message.channel.send("Please provide a link.");
 				return;
 			}
 
 			if (!message.member.voiceChannel) {
-				message.channel.sendMessage("You must be in a voice channel.");
+				message.channel.send("You must be in a voice channel.");
 				return;
 			}
 
@@ -124,14 +127,14 @@ bot.on("message", function(message) {
 			if (args[1].search(/youtube/i) == 12) {
 				server.queue.push(args[1]);
 			} else {
-				message.channel.sendMessage("Link must be from youtube.");
+				message.channel.send("Link must be from youtube.");
 				return;
 			}
 
 			if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
 				play(connection, message);
 			}).catch(function() {
-				message.channel.sendMessage("Connection timed out. Please try again.");
+				message.channel.send("Connection timed out. Please try again.");
 				return;
 			});
 			break;
@@ -147,9 +150,9 @@ bot.on("message", function(message) {
 			if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect;
 			break;
 		default:
-			message.channel.sendMessage("Invalid command.");
+			message.channel.send("Invalid command.");
 	}
 });
 
-// Log our bot in
+// Log bot in
 bot.login(config.TOKEN);
